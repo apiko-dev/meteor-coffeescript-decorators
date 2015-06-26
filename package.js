@@ -9,5 +9,14 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
   api.use('coffeescript');
-  api.addFiles('coffeescript-decorators.js');
+  api.addFiles('coffeescript-decorators.coffee');
+});
+
+
+Package.onTest(function(api) {
+  api.versionsFrom('1.1.0.2');
+  api.use('tinytest');
+  api.use('coffeescript');
+  api.use('jss:coffeescript-decorators');
+  api.addFiles('coffeescript-decorators-tests.coffee');
 });

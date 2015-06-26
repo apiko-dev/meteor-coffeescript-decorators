@@ -14,16 +14,28 @@
 
 
 @$startup = () -> (func) -> ->
-  Meteor.startup(func)
+  self = @
+  args = arguments
+  cb = () -> func.apply self, args
+  Meteor.startup cb
 
 
 @$wrapAsync = (context) -> (func) -> ->
-  Meteor.wrapAsync func, context
+  self = @
+  args = arguments
+  cb = () -> func.apply self, args
+  Meteor.wrapAsync cb, context
 
 
 @$setTimeout = (delay) -> (func) -> ->
-  Meteor.setTimeout(func, delay)
+  self = @
+  args = arguments
+  cb = () -> func.apply self, args
+  Meteor.setTimeout cb, delay
 
 
 @$setInterval = (delay) -> (func) -> ->
-  Meteor.setInterval(func, delay)
+  self = @
+  args = arguments
+  cb = () -> func.apply self, args
+  Meteor.setInterval cb, delay
